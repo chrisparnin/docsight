@@ -1,0 +1,22 @@
+{
+  "name": "DocSight",
+  "version": "0.1",
+  "manifest_version": 2,
+  "description": "Visualize visits to various documentation resources.",
+  "background": { "page": "background.html"},
+  "browser_action": {
+    "default_icon": "icon.png"
+  },
+  "sandbox": 
+  {
+   "pages": ["sandbox.html" ]
+  },
+  "permissions": [
+	 "history",
+	 "http://se.ninlabs.com/",
+	 "https://api.stackexchange.com/",
+    "tabs",
+    "unlimitedStorage",
+	 "topSites"
+  ]
+}

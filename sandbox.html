@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+	<head>
+		<title>DocSight</title>
+	
+		<script src="api/jquery-1.7.2.min.js"></script>
+		<script src="api/knockout-2.1.0.js"></script>
+		
+		<script src="js/models.js"></script>
+		<script src="js/startup.js"></script>
+
+	</head>
+	<body>
+		<div>
+
+<!-- http://aboutcode.net/2013/01/06/knockout-chrome-extension.html -->
+
+		<!-- <iframe src="sandbox.html" id="app" seamless></iframe> -->
+		<h2>Test knockout js</h2>
+      <div data-bind="foreach: stores">
+         <div class="datastore">
+				<span><a data-bind="text: title, attr: {href:url}"></a></span>
+         </div>
+      </div>
+		<h2> Test receive message</h2>
+		
+      <h2>Test inline worker</h2>
+		</div>
+	</div>
+  </body>
+</html>
