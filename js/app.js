@@ -113,6 +113,8 @@ function isIncluded(element,index,array)
       return true;
    if( element.url.indexOf("api.jquery.com") != -1)
       return true;
+   if( element.url.indexOf("knockoutjs.com") != -1 && (element.url.indexOf("learn.") != -1  || element.url.indexOf("documentation") != -1) )
+		return true;
    return false;
 }
 

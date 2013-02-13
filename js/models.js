@@ -32,6 +32,9 @@ function getSiteKind(url)
       return "msdn";
    if( url.indexOf("api.jquery.com") != -1)
       return "jquery";
+   if( url.indexOf("knockoutjs") != -1)
+		return "knockoutjs";
+	return "";
 }
 	
 
