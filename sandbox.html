@@ -9,6 +9,7 @@
 		<script src="js/models.js"></script>
 		<script src="js/startup.js"></script>
 
+		<link rel="stylesheet" type="text/css" href="docsight.css" />
 	</head>
 	<body>
 		<div>
@@ -19,7 +20,7 @@
 		<h2>Test knockout js</h2>
       <div data-bind="foreach: stores">
          <div class="datastore">
-				<span><a data-bind="text: title, attr: {href:url}"></a></span>
+				<span><a data-bind="text: title, attr: {href:url, class: classKind}"></a></span>
          </div>
       </div>
 		<h2> Test receive message</h2>
