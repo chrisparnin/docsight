@@ -6,10 +6,10 @@ $(document).ready( function()
 	});
 	*/
 
-	getChromeHistory( new Date().add(-3).days(), new Date(), 
+	getChromeHistory( new Date().add(-5).days(), new Date(), 
 		function( history, start, end )
 		{
-			appWindow.postMessage({displayLinks: history }, "*");
+			appWindow.postMessage({displayLinks: history}, "*");
 		}
 	);
 
@@ -49,11 +49,19 @@ function getChromeHistory(startTime,endTime,callback)
 									// Often, multiple requests are made, resulting in duplicate visits -- only include first in sequential visits.
 									if( !last || (last.title != v.title && last.url != v.url) )
 									{
+										// Google search often includes redirects, which sets title of site to be visited next.  Replace with query.
+										if( isGoogleSearch( v.url ) )
+										{
+											var params = getParameters( v.url );
+											v.title = decodeURIComponent(params.q.replace(/\+/g," "));
+										}
 										visit_series.push( v );
 									}
 									last = v;
 								}
-								
+							
+
+	
 							}
 							next();
 						});
@@ -62,12 +70,50 @@ function getChromeHistory(startTime,endTime,callback)
 				function(doneOrError)
 				{
 					visit_series.sort( function(a,b) {return a.time - b.time;} );
-					callback(visit_series.filter(isIncluded),startTime,endTime);
+					// For display, we don't want adjacencies.
+					var visits = visit_series.filter(isIncluded);
+					visits = filterAdjacencies(visits);
+					visits = filterGoogleSearchNearSite(30, visits );
+
+					callback(visits,startTime,endTime);
 				}
 			); // end async.forEachSeries
 		}
 	);
 }
+
+function filterAdjacencies(visits)
+{
+	included = [];
+
+	for(var i = 0; i < visits.length-1; i++)
+	{
+		var v = visits[i];
+		var next = visits[i+1];
+
+		if( v.url == next.url )
+		{
+			continue;
+		}
+		else if( isGoogleSearch( v.url ) && v.title == next.title )
+		{
+			continue;
+		}
+		// Redirects
+		//else if( isGoogleRedirect( v.url ) )
+		//{
+		//	continue;
+		//}
+		else
+		{
+			included.push( v );
+		}
+	}
+
+	return included;
+}
+
+
 
 function getChromeVisits(url, title, callback)
 {
@@ -85,6 +131,61 @@ function getChromeVisits(url, title, callback)
 	);
 }
 
+function filterGoogleSearchNearSite( secondsThreshold, visits )
+{
+	included = [];
+
+	for(var i = 0; i < visits.length; i++)
+	{
+		var v = visits[i];
+		if( isGoogleSearch( v.url ) )
+		{
+			var searchTime = v.time;
+			var docTime = visits[visits.length-1].time + 100000;
+			for( var x = i+1; x < visits.length; x++ )
+			{
+				var d = visits[x];
+				if( !isGoogleSearch( d.url ) )
+				{
+					docTime = d.time;
+					break;
+				}
+			}
+
+			if( compareVisitTimesInSeconds(docTime, searchTime) < secondsThreshold )
+			{
+				included.push( v );		
+			}
+		}
+		else
+		{
+			included.push( v );
+		}
+	}
+	return included;	
+}
+
+function compareVisitTimesInSeconds( a, b )
+{
+	return ( getLocalTime(a).getTime() - getLocalTime(b).getTime() ) / 1000;
+}
+
+function isGoogleRedirect( url )
+{
+   if( url.indexOf("google") != -1 && url.indexOf("/url") != -1 )
+      return true;  
+	return false;
+}
+
+function isGoogleSearch( url )
+{
+   if( (url.indexOf("google") != -1  && url.indexOf("/search?") != -1) || 
+		 (url.indexOf("google") != -1 && url.indexOf("output=search") != -1 )
+     )
+      return true;  
+	return false;
+}
+
 function isIncluded(element,index,array)
 {
    if( element.url.indexOf("mail.google") != -1 /*&& element.url.indexOf("search") != -1*/)
@@ -96,18 +197,23 @@ function isIncluded(element,index,array)
    if( element.url.indexOf("plus.google") != -1 )
       return false;
 
-   if( element.url.indexOf("google") != -1 &&
-       (element.url.indexOf("search") != -1 || element.url.indexOf("webhp") != -1
-       ||
-       element.url.indexOf("url?") != -1)
-       // This is a "redirect" from click...it will show twice.
-     )
-      return true;  
-   if( element.url.indexOf("stackoverflow.com") != -1 )
+   //if( element.url.indexOf("google") != -1 &&
+   //    (element.url.indexOf("search") != -1 || element.url.indexOf("webhp") != -1
+   //    ||
+   //    element.url.indexOf("url?") != -1)
+   //    // This is a "redirect" from click...it will show twice.
+   //  )
+   //   return true;  
+	if( isGoogleSearch( element.url ) )
+		return true;
+
+   if( element.url.indexOf("stackoverflow.com") != -1 && element.url.indexOf("careers.stackoverflow") == -1 )
       return true;
    if( element.url.indexOf("developer.android") != -1)
       return true;
    if( element.url.indexOf("groups.google.com") != -1)
+      return true;
+   if( element.url.indexOf("eclipse.org/forums") != -1)
       return true;
    if( element.url.indexOf("msdn") != -1)
       return true;
@@ -118,4 +224,33 @@ function isIncluded(element,index,array)
    return false;
 }
 
+function getLocalTime(googleTime)
+{
+   var date = new Date(0);
+   var time = (googleTime);
+   //console.log( time );
+   date.setTime( parseInt(time) );
+   return date;
+}
+
+function getImportTime(googleTime)
+{
+   var date = new Date(0);
+   var time = (googleTime);
+   //console.log( time );
+   date.setTime( parseInt(time)/100 );
+   return date;
+}
+
+function getParameters( href )
+{
+   var regex = /[?&]([^=#]+)=([^&#]*)/g,
+       url = href,
+       params = {},
+       match;
+   while(match = regex.exec(url)) {
+       params[match[1]] = match[2];
+   }
+   return params;
+}
 

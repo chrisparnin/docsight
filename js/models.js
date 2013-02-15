@@ -30,6 +30,8 @@ function getSiteKind(url)
       return "googlegroups";
    if( url.indexOf("msdn") != -1)
       return "msdn";
+   if( url.indexOf("eclipse.org/forums") != -1)
+      return "eclipse";
    if( url.indexOf("api.jquery.com") != -1)
       return "jquery";
    if( url.indexOf("knockoutjs") != -1)
@@ -38,12 +40,11 @@ function getSiteKind(url)
 }
 	
 
-var VisitModel = function(title, url, siteType)
+var VisitModel = function(title, url, siteType )
 {
 	this.title = ko.observable(title);
 	this.url = ko.observable(url);
 	this.classKind = ko.observable(siteType);
-
 	//this.classKind = ko.computed(function() {
    //     return siteType;
    //}, this);

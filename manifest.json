@@ -17,6 +17,6 @@
 	 "https://api.stackexchange.com/",
     "tabs",
     "unlimitedStorage",
-	 "topSites"
+	 "chrome://favicon/"
   ]
 }
