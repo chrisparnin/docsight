@@ -31,14 +31,22 @@ var StoreModel = function()
 	}.bind(this);
 };
 
+function isGoogleSearch( url )
+{
+   if( (url.indexOf("google") != -1  && url.indexOf("/search?") != -1) ||
+       (url.indexOf("google") != -1 && url.indexOf("output=search") != -1 ) ||
+       (url.indexOf("google") != -1 && url.indexOf("&q=") != -1 )
+     )
+      return true;
+   return false;
+}
+
 function getSiteKind(url)
 {
    if( url.indexOf("play.google") != -1 )
       return "play";
 
-   if( url.indexOf("google") != -1 &&
-      (url.indexOf("search") != -1 || url.indexOf("webhp") != -1 || url.indexOf("url?") != -1)
-     )
+   if( isGoogleSearch( url ) )
       return "google";
    if( url.indexOf("stackoverflow.com") != -1)
       return "stackoverflow";

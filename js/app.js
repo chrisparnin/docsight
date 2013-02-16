@@ -180,7 +180,8 @@ function isGoogleRedirect( url )
 function isGoogleSearch( url )
 {
    if( (url.indexOf("google") != -1  && url.indexOf("/search?") != -1) || 
-		 (url.indexOf("google") != -1 && url.indexOf("output=search") != -1 )
+		 (url.indexOf("google") != -1 && url.indexOf("output=search") != -1 ) ||
+		 (url.indexOf("google") != -1 && url.indexOf("&q=") != -1 )
      )
       return true;  
 	return false;
