@@ -5,9 +5,10 @@
 	
 		<script src="api/jquery-1.7.2.min.js"></script>
 		<script src="api/knockout-2.1.0.js"></script>
+		<script src="api/moment.2.0.0.min.js"></script>
 		
-		<script src="js/models.js"></script>
 		<script src="js/startup.js"></script>
+		<script src="js/models.js"></script>
 
 		<link rel="stylesheet" type="text/css" href="docsight.css" />
 	</head>
@@ -20,11 +21,20 @@
 
 		<!-- <iframe src="sandbox.html" id="app" seamless></iframe> -->
 		<h2>Test knockout js</h2>
-      <div data-bind="foreach: stores">
-         <div class="datastore">
-				<span><a target="#" data-bind="text: title, attr: {href:url, class: classKind}"></a></span>
-         </div>
-      </div>
+      <ul data-bind="foreach: stores">
+			<li class="visitItem">
+				<div data-bind="if: needsDateHeader">
+					<div class="dateHeader" data-bind="text: friendlyDate()"></div>
+				</div>
+				<div data-bind="if: spacer">
+					<div class="divider"></div>
+				</div>
+				<div class="visitSection">
+					<span class="visitTime" data-bind="text: friendlyTime()"></span>
+					<span class="title"><a target="#" data-bind="text: title, attr: {href:url, class: classKind}"></a></span>
+				</div>
+			</li>
+      </ul>
 		<h2> Test receive message</h2>
 		
       <h2>Test inline worker</h2>

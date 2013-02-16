@@ -6,7 +6,7 @@ $(document).ready( function()
 	});
 	*/
 
-	getChromeHistory( new Date().add(-5).days(), new Date(), 
+	getChromeHistory( moment().subtract('days',5), moment(), 
 		function( history, start, end )
 		{
 			appWindow.postMessage({displayLinks: history}, "*");
@@ -25,8 +25,8 @@ function getChromeHistory(startTime,endTime,callback)
 		{
 			text:'',
 			maxResults:1000000000,
-			startTime:startTime.getTime(),
-			endTime:endTime.getTime()
+			startTime:startTime.valueOf(),
+			endTime:endTime.valueOf()
 		}, 
 		function(historyItems)
 		{
@@ -55,13 +55,13 @@ function getChromeHistory(startTime,endTime,callback)
 											var params = getParameters( v.url );
 											v.title = decodeURIComponent(params.q.replace(/\+/g," "));
 										}
+		
+										v.isGoogleRedirect = isGoogleRedirect( v.url );
+
 										visit_series.push( v );
 									}
 									last = v;
 								}
-							
-
-	
 							}
 							next();
 						});
@@ -70,11 +70,11 @@ function getChromeHistory(startTime,endTime,callback)
 				function(doneOrError)
 				{
 					visit_series.sort( function(a,b) {return a.time - b.time;} );
-					// For display, we don't want adjacencies.
 					var visits = visit_series.filter(isIncluded);
+					// For display, we don't want adjacencies.
 					visits = filterAdjacencies(visits);
 					visits = filterGoogleSearchNearSite(30, visits );
-
+				
 					callback(visits,startTime,endTime);
 				}
 			); // end async.forEachSeries
@@ -167,7 +167,7 @@ function filterGoogleSearchNearSite( secondsThreshold, visits )
 
 function compareVisitTimesInSeconds( a, b )
 {
-	return ( getLocalTime(a).getTime() - getLocalTime(b).getTime() ) / 1000;
+	return ( getLocalTime(a).valueOf() - getLocalTime(b).valueOf())  / 1000;
 }
 
 function isGoogleRedirect( url )
@@ -226,10 +226,10 @@ function isIncluded(element,index,array)
 
 function getLocalTime(googleTime)
 {
-   var date = new Date(0);
-   var time = (googleTime);
-   //console.log( time );
-   date.setTime( parseInt(time) );
+   //var date = new Date(0);
+   //var time = (googleTime);
+   //date.setTime( parseInt(time) );
+	var date = moment( parseInt(googleTime) );	
    return date;
 }
 

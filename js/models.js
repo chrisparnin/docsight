@@ -4,12 +4,30 @@ var StoreModel = function()
 
 	this.appendVisits = function( visits )
 	{
+		var last = visits[0].time;
 		$.each(visits, 
 			function(index, v) 
 			{
-				this.stores.push( new VisitModel(v.title, v.url, getSiteKind(v.url)) );
+				var deltaInSeconds = (v.time.valueOf() - last.valueOf())/1000;
+				var spacer = false;
+				var needsDateHeader = false;
+				var thresholdInHours= 60 * 60 * .5;
+				if( last.format('L') != v.time.format('L') )
+				{
+					needsDateHeader = true;	
+				}
+				// chained so that date Header and spacer dont' both appear.
+				else if( deltaInSeconds > thresholdInHours)
+				{
+					spacer = true;
+				}
+				this.stores.push( new VisitModel(v.title, v.url, getSiteKind(v.url), v.time, spacer, needsDateHeader) );
+				last = v.time;
 			}.bind(this)
 		);
+
+		this.stores()[0].needsDateHeader(true);
+
 	}.bind(this);
 };
 
@@ -40,14 +58,24 @@ function getSiteKind(url)
 }
 	
 
-var VisitModel = function(title, url, siteType )
+var VisitModel = function(title, url, siteType, time, spacer, needsDateHeader )
 {
 	this.title = ko.observable(title);
 	this.url = ko.observable(url);
 	this.classKind = ko.observable(siteType);
+	this.time = time;
+	this.spacer  = ko.observable(spacer);
+	this.needsDateHeader = ko.observable(needsDateHeader);
 	//this.classKind = ko.computed(function() {
    //     return siteType;
    //}, this);
 
+	this.friendlyTime = ko.computed(function() {
+		return this.time.format('LT');
+	}, this );
+	this.friendlyDate = ko.computed(function() {
+		//return this.time.format('dddd') + " " + this.time.format('L');
+		return this.time.format('dddd, MMMM D YYYY');
+	}, this );
 	this.transitionsTo = ko.observableArray([]);
 };
