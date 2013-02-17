@@ -9,7 +9,7 @@ This enables two things:
 2) An episodic timeline for reviewing your coding activities.  It is amazing what we can remember by viewing a history
 of developer activities.
 
-<img src="https://github.com/chrisparnin/docsight/raw/master/docs/docSightTitleView.png"></img>
+![Screenshot]("https://github.com/chrisparnin/docsight/raw/master/docs/docSightTitleView.png")
 
 ## Icon View
 The view can be toggled between an icon cloud visualization or title view of your developement history.
@@ -19,6 +19,6 @@ The default view shows the past 5 days.  Alternative date ranges include 1 month
 
 ## Filtering
 
-docsight uses a whitelist approach for filtering visits to developer sites.  Adding own custom filtering is in development.
+`docsight` uses a whitelist approach for filtering visits to developer sites.  Adding own custom filtering is in development.
 To filter google searches, only searches within the past 30 seconds of a developer site are included.
 
