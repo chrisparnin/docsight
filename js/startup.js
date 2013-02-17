@@ -32,22 +32,40 @@ $(document).ready( function()
 		}
 	}, false);
 
+	////////////////////////////
+	// Button handlers
+
 	$("#exportBtn").click( function()
 	{
 		var blob = new Blob([ko.toJSON(storeModel)], {type: "text/plain;charset=utf-8"});
 		saveAs(blob, "exportedHistory.json");
 	});
+	
+	$("#fiveDayBtn").click( function()
+	{
+		storeModel.dayRange( 5 );
+		storeModel.stores( [] );
+		postMessageToParent({ fiveDayRange: true });
+	});
 
-   /*storeModel.loadStores(
-      function(){
-         $('.datastore').click( function() {
-            var name = $(this).first('span').text().trim();
-            chrome.tabs.create({url: chrome.extension.getURL('popup.html?name=' + encodeURIComponent(name)) }, function(tab)
-            {
-               //done
-            });
-         });
-      }
-   );
-	*/
+	$("#oneMonthBtn").click( function()
+	{
+		storeModel.dayRange(moment().diff( moment().subtract('months', 1), 'days') );
+		storeModel.stores( [] );
+		postMessageToParent({ oneMonthRange: true });
+	});
+	
+	$("#threeMonthBtn").click( function()
+	{
+		storeModel.dayRange(moment().diff( moment().subtract('months', 3), 'days') );
+		storeModel.stores( [] );
+		postMessageToParent({ threeMonthRange: true });
+	});
+
 });
+
+function postMessageToParent(message) 
+{
+	window.parent.postMessage(message, "*");
+}
+

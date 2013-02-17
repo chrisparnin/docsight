@@ -1,19 +1,42 @@
 $(document).ready( function()
 {
-	var appWindow = document.getElementById("app").contentWindow;
+	//var appWindow = document.getElementById("app").contentWindow;
 	/*chrome.topSites.get(function(topSites) {
 		appWindow.postMessage({ displayLinks: topSites }, "*");
 	});
 	*/
+   // The sandbox window can post messages to us
+   window.addEventListener("message", handleMessage, false);
 
-	getChromeHistory( moment().subtract('days',5), moment(), 
+	getHistoryAndSendToSandbox( moment().subtract('days',5), moment() );
+});
+
+function handleMessage() 
+{
+	if (event.data.fiveDayRange) 
+	{
+		getHistoryAndSendToSandbox( moment().subtract('days',5), moment() );
+   }
+	else if( event.data.oneMonthRange)
+	{
+		getHistoryAndSendToSandbox( moment().subtract('months',1), moment() );
+	}
+	else if( event.data.threeMonthRange)
+	{
+		getHistoryAndSendToSandbox( moment().subtract('months',3), moment() );
+	}
+}
+
+function getHistoryAndSendToSandbox( startDay, endDay )
+{
+	var appWindow = document.getElementById("app").contentWindow;
+	getChromeHistory( startDay, endDay,
 		function( history, start, end )
 		{
 			appWindow.postMessage({displayLinks: history}, "*");
 		}
 	);
-
-});
+}
 
 function getChromeHistory(startTime,endTime,callback)
 {

@@ -1,6 +1,7 @@
 var StoreModel = function()
 {
    this.stores = ko.observableArray([]);
+	this.dayRange = ko.observable(5);
 
 	this.appendVisits = function( visits )
 	{

@@ -16,14 +16,24 @@
 	</head>
 	<body>
 
-
-		<div>
-
 <!-- http://aboutcode.net/2013/01/06/knockout-chrome-extension.html -->
 
 		<!-- <iframe src="sandbox.html" id="app" seamless></iframe> -->
-		<div id="buttonToolbar">
-			<a id="exportBtn" class="btn btn-primary btn-large" href="#">Export</a>
+		<div class="navbar">
+			<div class="navbar-inner">
+				<a class="brand" href="#">Doc Sight</a>
+				<div id="buttonToolbar">
+					<a id="fiveDayBtn" class="btn btn-success btn-large" href="#">5 days</a>
+					<a id="oneMonthBtn" class="btn btn-success btn-large" href="#">1 month</a>
+					<a id="threeMonthBtn" class="btn btn-success btn-large" href="#">3 month</a>
+					<a id="iconCloudBtn" class="btn btn-warning btn-large" href="#">Icon Cloud</a>
+					<a id="exportBtn" class="btn btn-warning btn-large " href="#">Export</a>
+				</div>
+			</div>
+		</div>
+
+		<div id="preamble">
+			<em>Developer resources used in the past - <span data-bind="text:dayRange"></span> days.</em>
 		</div>
 
       <ul data-bind="foreach: stores">
@@ -40,10 +50,5 @@
 				</div>
 			</li>
       </ul>
-		<h2> Test receive message</h2>
-		
-      <h2>Test inline worker</h2>
-		</div>
-	</div>
   </body>
 </html>
