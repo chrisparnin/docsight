@@ -32,6 +32,12 @@ $(document).ready( function()
 		}
 	}, false);
 
+	$("#exportBtn").click( function()
+	{
+		var blob = new Blob([ko.toJSON(storeModel)], {type: "text/plain;charset=utf-8"});
+		saveAs(blob, "exportedHistory.json");
+	});
+
    /*storeModel.loadStores(
       function(){
          $('.datastore').click( function() {
@@ -45,4 +51,3 @@ $(document).ready( function()
    );
 	*/
 });
-

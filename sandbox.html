@@ -6,11 +6,13 @@
 		<script src="api/jquery-1.7.2.min.js"></script>
 		<script src="api/knockout-2.1.0.js"></script>
 		<script src="api/moment.2.0.0.min.js"></script>
+		<script src="api/FileSaver.js"></script>
 		
 		<script src="js/startup.js"></script>
 		<script src="js/models.js"></script>
 
 		<link rel="stylesheet" type="text/css" href="docsight.css" />
+
 	</head>
 	<body>
 
@@ -20,7 +22,10 @@
 <!-- http://aboutcode.net/2013/01/06/knockout-chrome-extension.html -->
 
 		<!-- <iframe src="sandbox.html" id="app" seamless></iframe> -->
-		<h2>Test knockout js</h2>
+		<div id="buttonToolbar">
+			<a id="exportBtn" class="btn btn-primary btn-large" href="#">Export</a>
+		</div>
+
       <ul data-bind="foreach: stores">
 			<li class="visitItem">
 				<div data-bind="if: needsDateHeader">
