@@ -21,12 +21,13 @@
 		<!-- <iframe src="sandbox.html" id="app" seamless></iframe> -->
 		<div class="navbar">
 			<div class="navbar-inner">
-				<a class="brand" href="#">Doc Sight</a>
+				<a class="brand" target="#" href="https://github.com/chrisparnin/docsight">Doc Sight</a>
 				<div id="buttonToolbar">
 					<a id="fiveDayBtn" class="btn btn-success btn-large" href="#">5 days</a>
 					<a id="oneMonthBtn" class="btn btn-success btn-large" href="#">1 month</a>
 					<a id="threeMonthBtn" class="btn btn-success btn-large" href="#">3 month</a>
 					<a id="iconCloudBtn" class="btn btn-warning btn-large" href="#">Icon Cloud</a>
+					<a id="titleViewBtn" style="display:none" class="btn btn-warning btn-large" href="#">Title View</a>
 					<a id="exportBtn" class="btn btn-warning btn-large " href="#">Export</a>
 				</div>
 			</div>
@@ -36,19 +37,30 @@
 			<em>Developer resources used in the past - <span data-bind="text:dayRange"></span> days.</em>
 		</div>
 
-      <ul data-bind="foreach: stores">
-			<li class="visitItem">
-				<div data-bind="if: needsDateHeader">
+		<!-- http://stackoverflow.com/questions/11553999/knockout-js-if-else-bindings?rq=1 -->
+		<div id="cloudContainer" data-bind="if: iconCloudView">
+			<div data-bind="foreach: stores">
+				<span data-bind="if: needsDateHeader">
 					<div class="dateHeader" data-bind="text: friendlyDate()"></div>
-				</div>
-				<div data-bind="if: spacer">
-					<div class="divider"></div>
-				</div>
-				<div class="visitSection">
-					<span class="visitTime" data-bind="text: friendlyTime()"></span>
-					<span class="title"><a target="#" data-bind="text: title, attr: {href:url, class: classKind}"></a></span>
-				</div>
-			</li>
-      </ul>
+				</span>
+				<span class="iconContainer"><a class="iconHref" target="#" data-bind="attr: {href:url, class: classKind}"></a></span>
+			</div>
+		</div>
+		<div data-bind="ifnot: iconCloudView">
+			<ul data-bind="foreach: stores">
+				<li class="visitItem">
+					<div data-bind="if: needsDateHeader">
+						<div class="dateHeader" data-bind="text: friendlyDate()"></div>
+					</div>
+					<div data-bind="if: spacer">
+						<div class="divider"></div>
+					</div>
+					<div class="visitSection">
+						<span class="visitTime" data-bind="text: friendlyTime()"></span>
+						<span class="title"><a target="#" data-bind="text: title, attr: {href:url, class: classKind}"></a></span>
+					</div>
+				</li>
+			</ul>
+		</div>
   </body>
 </html>

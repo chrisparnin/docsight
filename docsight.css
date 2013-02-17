@@ -39,12 +39,27 @@ body
 	margin-left:5px;
 }
 
+#cloudContainer
+{
+	width:50%;
+}
+
 #preamble
 {
 	margin-left: 30px; 
 	padding: 0px; 
 	color:#317eac;
 	font-size:110%;
+}
+
+.iconContainer
+{
+	height:20px;
+	width:20px;
+}
+.iconHref a
+{
+	display:inline;
 }
 
 .navbar .brand {

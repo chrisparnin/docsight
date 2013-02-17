@@ -41,6 +41,20 @@ $(document).ready( function()
 		saveAs(blob, "exportedHistory.json");
 	});
 	
+	$("#iconCloudBtn").click( function()
+	{
+		$('#titleViewBtn').toggle();
+		$('#iconCloudBtn').toggle();
+		storeModel.iconCloudView( true );
+	});
+	
+	$("#titleViewBtn").click( function()
+	{
+		$('#titleViewBtn').toggle();
+		$('#iconCloudBtn').toggle();
+		storeModel.iconCloudView( false );
+	});
+	
 	$("#fiveDayBtn").click( function()
 	{
 		storeModel.dayRange( 5 );

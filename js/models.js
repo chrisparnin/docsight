@@ -3,6 +3,8 @@ var StoreModel = function()
    this.stores = ko.observableArray([]);
 	this.dayRange = ko.observable(5);
 
+	this.iconCloudView = ko.observable(false);
+
 	this.appendVisits = function( visits )
 	{
 		var last = visits[0].time;
