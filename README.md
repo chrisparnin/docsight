@@ -11,9 +11,12 @@ This enables two things:
 2. An episodic timeline for reviewing your coding activities.  It is amazing what we can remember by viewing a history
 of developer activities.
 
-> really helpful to avoid open tab creep :) &mdash; <cite>Jens</cite>
 
 ![Screenshot](https://github.com/chrisparnin/docsight/raw/master/docs/docSightTitleView.png)
+
+## Testimonials
+
+> really helpful to avoid open tab creep :) &mdash; <cite>Jens</cite>
 
 ## Icon View
 The view can be toggled between an icon cloud visualization or title view of your developement history.
