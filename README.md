@@ -5,8 +5,10 @@ docsight
 Chrome extension for visualizing past visits to developer resources such as blog posts or Stack Overflow questions.
 
 This enables two things:
-1) A quick way to browse your history for recovering important development resources. 
-2) An episodic timeline for reviewing your coding activities.  It is amazing what we can remember by viewing a history
+
+1. A quick way to browse your history for recovering important development resources. 
+
+2. An episodic timeline for reviewing your coding activities.  It is amazing what we can remember by viewing a history
 of developer activities.
 
 > really helpful to avoid open tab creep :) &mdash; <cite>Jens</cite>
