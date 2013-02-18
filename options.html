@@ -1,0 +1,41 @@
+<html>
+<head><title>My Test Extension Options</title>
+
+	<link rel="stylesheet" type="text/css" href="bootstrap.css" />
+	<link rel="stylesheet" type="text/css" href="options.css" />
+	<script src="options.js"></script>
+
+</head>
+<body>
+
+	<div id="content">
+		<form class="form-horizontal well">
+			<legend>docsight preferences</legend>
+			<div class="control-group">
+				<label class="control-label" for="optionsCheckbox">History Order</label>
+				<div class="controls">
+					<label class="radio">
+						<input type="radio" name="ordertype" value="Chronological"/>Chronological
+					</label>
+					<label class="radio">
+						<input type="radio" name="ordertype" value="Newest-First" />Newest First
+					</label>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="textarea">Custom Exclusion Filters</label>
+				<div class="controls">
+					<textarea class="input-xlarge" id="textarea" rows="8"></textarea>
+				</div>
+				<p class="help-block">See this <a href="" target="#">guide</a> for writing filters.</p>
+			</div>
+			<div class="form-actions">
+				<button type="submit" class="btn btn-primary">Save changes</button>
+				<button type="reset" class="btn">Cancel</button>
+			</div>
+		</form>
+	</div>
+</body>
+
+
+</html>
