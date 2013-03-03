@@ -5,13 +5,20 @@ var StoreModel = function()
 
 	this.iconCloudView = ko.observable(false);
 
+	this.options = ko.observable({chronological:true,filters:""});
+
 	this.appendVisits = function( visits )
 	{
+		if( this.options().chronological == false )
+		{
+			visits.reverse();
+		}
+
 		var last = visits[0].time;
 		$.each(visits, 
 			function(index, v) 
 			{
-				var deltaInSeconds = (v.time.valueOf() - last.valueOf())/1000;
+				var deltaInSeconds = Math.abs(v.time.valueOf() - last.valueOf())/1000;
 				var spacer = false;
 				var needsDateHeader = false;
 				var thresholdInHours= 60 * 60 * .5;
@@ -30,6 +37,7 @@ var StoreModel = function()
 		);
 
 		this.stores()[0].needsDateHeader(true);
+		
 
 	}.bind(this);
 };

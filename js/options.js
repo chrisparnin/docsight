@@ -34,6 +34,27 @@ $(document).ready( function()
 	});
 });		
 
+function getOptionsExtern(callback)
+{
+	// load previous settings.
+   chrome.storage.sync.get(OptionsStorageKey, function(entry)
+   {
+      // Set previous options.
+      var optionsStr = entry[OptionsStorageKey];
+      if( optionsStr )
+      {
+			var options = JSON.parse( optionsStr );
+			callback( options );
+		}
+	});
+
+	// Default options:
+	var defaultOptions = {};
+	defaultOptions["chronological"] = true; 
+	defaultOptions["filters"] = "";
+	return defaultOptions;
+}
+
 function validateOptions()
 {
 	var chron = $("#chron").is(':checked');

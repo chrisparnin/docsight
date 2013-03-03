@@ -2,8 +2,14 @@ $(document).ready( function()
 {
    var storeModel = new StoreModel();
    ko.applyBindings(storeModel);
+		
 
 	window.addEventListener( "message", function(event) {
+		if( event.data.options) {
+			storeModel.options( event.data.options );
+			postMessageToParent({ ready: true});
+		}
+
 		if (event.data.displayLinks) {
 
 			var visits = event.data.displayLinks;

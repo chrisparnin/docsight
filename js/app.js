@@ -8,8 +8,30 @@ $(document).ready( function()
    // The sandbox window can post messages to us
    window.addEventListener("message", handleMessage, false);
 
-	getHistoryAndSendToSandbox( moment().subtract('days',5), moment() );
+	sendOptions();
+
+	chrome.storage.onChanged.addListener(function(changes, namespace) {
+		for (key in changes) 
+		{
+			var storageChange = changes[key];
+			if( key == OptionsStorageKey )
+			{
+				// Notify that options have changed.
+				sendOptions();
+			}
+		}
+	});
+
 });
+
+function reload()
+{
+	setTimeout( function() {
+		getHistoryAndSendToSandbox( moment().subtract('days',5), moment() )
+		},
+		1000
+	);
+}
 
 function handleMessage() 
 {
@@ -25,6 +47,23 @@ function handleMessage()
 	{
 		getHistoryAndSendToSandbox( moment().subtract('months',3), moment() );
 	}
+	else if( event.data.getOptions)
+	{
+		sendOptions();
+	}
+	else if( event.data.ready )
+	{
+		reload();
+	}	
+}
+
+function sendOptions()
+{
+	var appWindow = document.getElementById("app").contentWindow;
+	getOptionsExtern( function(options) 
+	{
+		appWindow.postMessage({options: options}, "*");
+	});
 }
 
 function getHistoryAndSendToSandbox( startDay, endDay )
