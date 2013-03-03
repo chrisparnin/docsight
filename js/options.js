@@ -1,31 +1,94 @@
-// Saves options to localStorage.
-function save_options() {
-  var select = document.getElementById("color");
-  var color = select.children[select.selectedIndex].value;
+var OptionsStorageKey = "DocSight.V1.Options";
 
-	 // Save it using the Chrome extension storage API.
-  chrome.storage.sync.set({'favorite_color': color}, function() {
-    // Notify that we saved.
-    message('Settings saved');
-  });
+$(document).ready( function() 
+{
+	$("#submitBtn").attr('disabled','disabled');
 
+	// load previous settings.
+	chrome.storage.sync.get(OptionsStorageKey, function(entry) 
+	{
+		// Set previous options.
+		var optionsStr = entry[OptionsStorageKey];
+		if( optionsStr )
+		{
+		    var options = JSON.parse( optionsStr );
+		    {
+			    setOptions(options);
+			    //alert('Settings loaded.');
+		    }
+		}
+
+		// Can enable submit.
+		$("#submitBtn").removeAttr('disabled');
+		$("#optionsForm").submit( function() 
+		{
+			if( !validateOptions() )
+			{
+				alert('Must select an option for ordering');
+				return false;
+			}
+			var options = getOptions();
+			saveOptions(options);
+			return false;
+		});
+	});
+});		
+
+function validateOptions()
+{
+	var chron = $("#chron").is(':checked');
+	var newest = $("#newest").is(':checked');
+
+	return ( chron == true || newest == true );
 }
 
-// Restores select box state to saved value from localStorage.
-function restore_options() {
+function getOptions()
+{
+	var options = {};
+	options.chronological = $("#chron").is(':checked');
+	options.filters = $("#filters").val();
+	return options;
+}
 
-	storageArea.get('favorite_color', function(favorites)
+function setOptions(options)
+{
+	if( options.chronological )
 	{
-		var favorite = favorites[0];
-		var select = document.getElementById("color");
-		for (var i = 0; i < select.children.length; i++) {
-			var child = select.children[i];
-			if (child.value == favorite) {
-				child.selected = "true";
-				break;
-			}
+		$("#chron").attr('checked', 'checked');
+	}
+	else
+	{
+		$("#newest").attr('checked', 'checked');
+	}
+
+	$("#filters").val( options.filters );
+}
+
+function saveOptions(options)
+{
+	// Save it using the Chrome extension storage API.
+	var json = JSON.stringify( options );
+	var param = {};
+	param[OptionsStorageKey] = json;
+	chrome.storage.sync.set( param , function() {
+		if( chrome.runtime.lastError )
+		{
+			alert(chrome.runtime.lastError.message);
 		}
 	});
 }
-document.addEventListener('DOMContentLoaded', restore_options);
-document.querySelector('#save').addEventListener('click', save_options);
+
+function getOptionsFoo()
+{
+	var options = {};
+	var select = document.getElementById("color");
+	for (var i = 0; i < select.children.length; i++) 
+	{
+		var child = select.children[i];
+		if (child.value == favorite) 
+		{
+			child.selected = "true";
+			break;
+		}
+	}
+}

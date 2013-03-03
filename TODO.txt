@@ -1,0 +1,17 @@
+## Developer sites
+https://developer.mozilla.org/
+https://developer.chrome.com/
+github.com
+http://help.eclipse.org/
+
+http://answers.oreilly.com/
+
+* various javascript frameworks *
+
+docs/javadocs/ e.g. http://google-gson.googlecode.com/svn/trunk/gson/docs/javadocs/index.html
+
+## Blogs
+Search keyword elements, e.g. IWorkspace, or import org.eclipse.core.resources.IFolder;
+
+- http://www.programcreek.com/2011/05/eclipse-jdt-tutorial-java-model/
+
