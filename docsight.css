@@ -107,7 +107,8 @@ ul {
 .dateHeader {
    display: block;
 	/*text-align:center;*/
-	font-family: 'open sans',arial,sans-serif;
+	/*font-family: 'Open Sans',arial,sans-serif;*/
+	font-family: arial,sans-serif;
 	/*margin-left:10px;*/
 	margin-top:1.5em;
 	margin-bottom:.7em;
@@ -118,7 +119,8 @@ ul {
 	width:80px;
 	text-overflow: ellipsis;
 	text-align:right;
-	font-family: 'open sans',arial,sans-serif;
+	/*font-family: 'Open Sans',arial,sans-serif;*/
+	font-family: arial,sans-serif;
 	font-size:90%;
 	color: #9c9c9c;
 	overflow:hidden;

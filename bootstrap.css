@@ -1,4 +1,13 @@
-@import url(//fonts.googleapis.com/css?family=Telex);
+/*@import url(//fonts.googleapis.com/css?family=Telex);
+*/
+
+@font-face {
+  font-family: 'Telex';
+  font-style: normal;
+  font-weight: 400;
+  /*src: local('Telex-Regular'), url(http://themes.googleusercontent.com/static/fonts/telex/v1/QBUn5F7b-9Ulki7K75J1Bw.woff) format('woff');*/
+  src: local('Telex-Regular'), url(/font/Telex.woff) format('woff');*/
+}
 
 /*!
  * Bootstrap v2.3.0
