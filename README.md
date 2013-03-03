@@ -29,3 +29,9 @@ The default view shows the past 5 days.  Alternative date ranges include 1 month
 `docsight` uses a whitelist approach for filtering visits to developer sites.  Adding own custom filtering is in development.
 To filter google searches, only searches within the past 30 seconds of a developer site are included.
 
+Currently, `docsight` supports custom exclusion of urls/titles.  For example, to exclude visits to user pages on stackoverflow, you could write the following:
+
+    User .*? \- Stack Overflow
+    User .*? \- Meta Stack Overflow
+
+These are based on [javascript regex](https://developer.mozilla.org/en-US/docs/JavaScript/Guide/Regular_Expressions).  Seperate each filter by a newline.

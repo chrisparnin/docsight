@@ -16,6 +16,9 @@ var StoreModel = function()
 		for( var i = 0; i < filters.length; i++ )
 		{
 			var filter = filters[i];
+			// guard against empty filter expressions.
+			if( filter == "" )
+				continue;
 			var pattern = new RegExp( filter );
 			if( visit.title.search( pattern ) != -1)
 			{
