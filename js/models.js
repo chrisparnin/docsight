@@ -7,6 +7,29 @@ var StoreModel = function()
 
 	this.options = ko.observable({chronological:true,filters:""});
 
+	this.userExclude = function ( visit )
+	{
+		if( this.options().filters == "" )
+			return false;
+
+		var filters = this.options().filters.split( "\n" );
+		for( var i = 0; i < filters.length; i++ )
+		{
+			var filter = filters[i];
+			var pattern = new RegExp( filter );
+			if( visit.title.search( pattern ) != -1)
+			{
+				return true;
+			}
+			if( visit.url.search( pattern ) != -1)
+			{
+				return true;
+			}
+		}
+		return false;
+	}.bind(this);
+
+
 	this.appendVisits = function( visits )
 	{
 		if( this.options().chronological == false )
@@ -40,6 +63,8 @@ var StoreModel = function()
 		
 
 	}.bind(this);
+
+
 };
 
 function isGoogleSearch( url )

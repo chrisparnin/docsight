@@ -1,8 +1,7 @@
 $(document).ready( function()
 {
-   var storeModel = new StoreModel();
+	var storeModel = new StoreModel();
    ko.applyBindings(storeModel);
-		
 
 	window.addEventListener( "message", function(event) {
 		if( event.data.options) {
@@ -21,11 +20,16 @@ $(document).ready( function()
 				// chrome will stringify objects passed in messages.
 				// transduce epoch to moment() 
 				v.time = moment(v.time);
-
+				
 				// Sometimes the title is just "" ..shrug
 				if( v.title == "" )
 				{
 					v.title = v.url;
+				}
+
+				if( storeModel.userExclude( v ) )
+				{
+					continue;
 				}
 
 				if( !v.isGoogleRedirect )

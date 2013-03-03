@@ -10,7 +10,8 @@ $(document).ready( function()
 
 	sendOptions();
 
-	chrome.storage.onChanged.addListener(function(changes, namespace) {
+	chrome.storage.onChanged.addListener(function(changes, namespace) 
+	{
 		for (key in changes) 
 		{
 			var storageChange = changes[key];
@@ -26,8 +27,9 @@ $(document).ready( function()
 
 function reload()
 {
-	setTimeout( function() {
-		getHistoryAndSendToSandbox( moment().subtract('days',5), moment() )
+	setTimeout( function() 
+		{
+			getHistoryAndSendToSandbox( moment().subtract('days',5), moment() )
 		},
 		1000
 	);
@@ -54,7 +56,7 @@ function handleMessage()
 	else if( event.data.ready )
 	{
 		reload();
-	}	
+	}
 }
 
 function sendOptions()
