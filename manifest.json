@@ -1,6 +1,6 @@
 {
   "name": "DocSight",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "manifest_version": 2,
   "description": "Visualize visits to various documentation resources.",
   "background": { "page": "background.html"},
