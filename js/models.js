@@ -101,6 +101,8 @@ function getSiteKind(url)
       return "jquery";
    if( url.indexOf("knockoutjs") != -1)
 		return "knockoutjs";
+   if( url.indexOf("php.net") != -1)
+      return "php";
 	return "";
 }
 	
