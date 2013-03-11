@@ -10,6 +10,8 @@ $(document).ready( function()
 
 	sendOptions();
 
+	buildRegexCache();
+
 	chrome.storage.onChanged.addListener(function(changes, namespace) 
 	{
 		for (key in changes) 
@@ -19,11 +21,25 @@ $(document).ready( function()
 			{
 				// Notify that options have changed.
 				sendOptions();
+				setTimeout( reload, 3000 );
 			}
 		}
 	});
 
+	setTimeout( reload, 1000 );
 });
+
+function buildRegexCache()
+{
+	if( filtersPresets.regex_cache.length == 0 )
+	{
+		for( var i = 0; i < filtersPresets.include_patterns.length; i++ )
+		{
+			var pattern = filtersPresets.include_patterns[i];
+			filtersPresets.regex_cache.push( convert2RegExp( pattern ) );
+		}
+	}
+}
 
 function reload()
 {
@@ -260,10 +276,9 @@ function isIncludedNew(element,index,array)
 		return true;
 
 	// preset includes
-	for( var i = 0; i < filtersPresets.include_patterns.length; i++ )
+	for( var i = 0; i < filtersPresets.regex_cache.length; i++ )
 	{
-		var pattern = filtersPresets.include_patterns[i];
-		var regex = convert2RegExp( pattern );
+		var regex = filtersPresets.regex_cache[i];
 		if( element.url.match( regex ) )
 		{
 			return true;
