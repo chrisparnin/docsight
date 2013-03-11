@@ -117,7 +117,10 @@ function getChromeHistory(startTime,endTime,callback)
 										if( isGoogleSearch( v.url ) )
 										{
 											var params = getParameters( v.url );
-											v.title = decodeURIComponent(params.q.replace(/\+/g," "));
+											if( params.q )
+											{
+												v.title = decodeURIComponent(params.q.replace(/\+/g," "));
+											}
 										}
 		
 										v.isGoogleRedirect = isGoogleRedirect( v.url );
@@ -134,7 +137,7 @@ function getChromeHistory(startTime,endTime,callback)
 				function(doneOrError)
 				{
 					visit_series.sort( function(a,b) {return a.time - b.time;} );
-					var visits = visit_series.filter(isIncluded);
+					var visits = visit_series.filter(isIncludedNew);
 					// For display, we don't want adjacencies.
 					visits = filterAdjacencies(visits);
 					visits = filterGoogleSearchNearSite(30, visits );
@@ -248,6 +251,24 @@ function isGoogleSearch( url )
 		 (url.indexOf("google") != -1 && url.indexOf("&q=") != -1 )
      )
       return true;  
+	return false;
+}
+
+function isIncludedNew(element,index,array)
+{
+	if( isGoogleSearch( element.url ) )
+		return true;
+
+	// preset includes
+	for( var i = 0; i < filtersPresets.include_patterns.length; i++ )
+	{
+		var pattern = filtersPresets.include_patterns[i];
+		var regex = convert2RegExp( pattern );
+		if( element.url.match( regex ) )
+		{
+			return true;
+		}
+	}
 	return false;
 }
 

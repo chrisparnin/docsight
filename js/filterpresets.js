@@ -1,5 +1,7 @@
 var filtersPresets = 
 {
+	regex_cache : [],
+
 	include_patterns : 
 		[
 			"*://*.google.tld/search*",
@@ -12,6 +14,12 @@ var filtersPresets =
 			"*://apidock.com/*",
 	
 			"*://developer.mozilla.org/*",
+			
+			// msdn
+			"*://msdn.microsoft.com/*",
+			"*://code.msdn.microsoft.com/*",
+			"*://social.msdn.microsoft.com/*",
+
 
 			// javadocs, general
 			"*://*/docs/javadocs/*",
@@ -19,6 +27,7 @@ var filtersPresets =
 			// repository sites?
 			//"*://code.google.com/*",
 			//"://github.com/*",
+			//*://bl.ocks.org/*",
 		
 			// clojure
 			"*://clojure.org/*",
@@ -74,7 +83,7 @@ var filtersPresets =
 			"*://docs.python.org/",
 			"*://wiki.python.org/",
 			"*://*python.org/dev/peps/*",
-			"*://*python.org/doc/*"
+			"*://*python.org/doc/*",
 
 			"*://docs.djangoproject.com/*",
 
@@ -98,58 +107,90 @@ var filtersPresets =
 
 			///// javascript ///////
 			// jquery
+			"*://api.jquery.com/*",
 			// prototype
+			"*://api.prototypejs.org/*",
+			"*://prototypejs.org/learn/*",
 			// d3
+			"*://github.com/mbostock/d3/wiki/*",
 			// yui
+			"*://yuilibrary.com/yui/docs/*",
 			// dojo
+			"*://dojotoolkit.org/documentation/*",
+			"*://dojotoolkit.org/reference-guide/*",
+			"*://dojotoolkit.org/api/*",
 			// processing
+			"*://processingjs.org/reference/*",
+			"*://processingjs.org/learning/*",
+			"*://processingjs.org/articles/*",
 			// extjs
+			"*://docs.sencha.com/*",
 			// mootools
+			"*://mootools.net/docs/*",
 			// raphael
+			"*://raphaeljs.com/reference.html*",
 			// rightjs
+			"*://rightjs.org/docs*",
+			"*://rightjs.org/tutorials*",
 			// threejs
+			"*://mrdoob.github.com/three.js/docs/*",
 			// zepto
+			"*://zeptojs.com/#*",
 			// shipyard
+			"*://seanmonstar.github.com/Shipyard/api/*",
+			"*://seanmonstar.github.com/Shipyard/topics/*",
 			// knockoutjs
+			"*://knockoutjs.com/documentation/*",
 			// x toolkit edge
+			"*://api.goxtk.com/*",
 			// angularjs
+			"*://docs.angularjs.org/*",
 			// enyo
+			"*://enyojs.com/api/*",
+			"*://enyojs.com/docs/*",
+			"*://github.com/enyojs/enyo/wiki/*",
 			// underscore
+			"*://underscorejs.org/#",
 			// bonsai
+			"*://docs.bonsaijs.org/*",
 			// kineticjs
+			"*://kineticjs.com/docs/*",
 			// thorax
-			// webapp install
-			// createjs
+			"*://thoraxjs.org/api.html*",
+			// createjs ??
 			// qooxdoo
+			"*://manual.qooxdoo.org/*",
+			"*://demo.qooxdoo.org/*",
 			// fabricjs
-			// kineticjs
+			"*://github.com/kangax/fabric.js/wiki*",
+			"*://fabricjs.com/*", // Lots of neat demos, but not in demo subdirectory
 			// momentjs
+			"*://momentjs.com/docs/*",
+			//backbone
+			"*://backbonejs.org/*",
+			//handlebars
+			"*://handlebarsjs.com/*",
 
-			// msdn
-			"*://msdn.microsoft.com/*",
-			"*://code.msdn.microsoft.com/*",
-			"*://social.msdn.microsoft.com/*",
+			// OTHER STUFF
 
 			// eclipse
 			"*://wiki.eclipse.org/PDE/*",
 			"*://help.eclipse.org/*",
 
 			// java
-			"*://docs.oracle.com/javase/*/docs/*"
+			"*://docs.oracle.com/javase/*/docs/*",
 		
 			// scala
 			"*://www.scala-lang.org/api/*",
 	
 			// android	
-			"*://developer.android.com/*"		
+			"*://developer.android.com/*",
 
 			// iOS
-			"*://developer.apple.com/library/ios/*"
+			"*://developer.apple.com/library/ios/*",
 	
 			// chrome
-			"*://developer.chrome.com/extensions/*"
-
-
+			"*://developer.chrome.com/extensions/*",
 		]
 
 }
