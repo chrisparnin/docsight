@@ -28,8 +28,7 @@ The default view shows the past 5 days.  Alternative date ranges include 1 month
 
 ## Filtering
 
-`docsight` uses a whitelist approach for filtering visits to developer sites.  Adding own custom filtering is in development.
-To filter google searches, only searches within the past 30 seconds of a developer site are included.
+`docsight` uses a [whitelist](https://github.com/chrisparnin/docsight/blob/master/js/filterpresets.js) approach for filtering visits to developer sites.  Adding own custom filtering is in development.  To filter google searches, only searches within the past 30 seconds of a developer site are included.  Version 1.0.4 supports 63 apis/languages!
 
 Currently, `docsight` supports custom exclusion of urls/titles.  For example, to exclude visits to user pages on stackoverflow, you could write the following:
 
