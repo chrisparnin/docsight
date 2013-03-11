@@ -21,6 +21,8 @@ of developer activities.
 ## Icon View
 The view can be toggled between an icon cloud visualization or title view of your developement history.
 
+![ICON VIEW](https://github.com/chrisparnin/docsight/raw/master/docs/IconViews.png)
+
 ## History Range
 The default view shows the past 5 days.  Alternative date ranges include 1 month and 3 months.
 
