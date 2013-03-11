@@ -7,6 +7,8 @@ var StoreModel = function()
 
 	this.options = ko.observable({chronological:true,filters:""});
 
+	buildRegexCache();
+
 	this.userExclude = function ( visit )
 	{
 		if( this.options().filters == "" )
@@ -82,27 +84,22 @@ function isGoogleSearch( url )
 
 function getSiteKind(url)
 {
-   if( url.indexOf("play.google") != -1 )
-      return "play";
+	for( var i = 0; i < filtersPresets.include_patterns.length; i++ )
+   {
+		var site = filtersPresets.include_patterns[i];
+		if( site.ico == "" )
+			continue;
 
-   if( isGoogleSearch( url ) )
-      return "google";
-   if( url.indexOf("stackoverflow.com") != -1)
-      return "stackoverflow";
-   if( url.indexOf("developer.android") != -1)
-      return "android";
-   if( url.indexOf("groups.google.com") != -1)
-      return "googlegroups";
-   if( url.indexOf("msdn") != -1)
-      return "msdn";
-   if( url.indexOf("eclipse.org/forums") != -1)
-      return "eclipse";
-   if( url.indexOf("api.jquery.com") != -1)
-      return "jquery";
-   if( url.indexOf("knockoutjs") != -1)
-		return "knockoutjs";
-   if( url.indexOf("php.net") != -1)
-      return "php";
+      for( var u = 0; u < site.urls.length; u++ )
+      {
+			var pattern = site.urls[u];
+			var regex = filtersPresets.regex_cache[pattern];
+			if( regex && url.match( regex ) )
+			{
+				return site.ico;
+			}
+		}
+	}
 	return "";
 }
 	

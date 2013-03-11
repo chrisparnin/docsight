@@ -29,18 +29,6 @@ $(document).ready( function()
 	setTimeout( reload, 1000 );
 });
 
-function buildRegexCache()
-{
-	if( filtersPresets.regex_cache.length == 0 )
-	{
-		for( var i = 0; i < filtersPresets.include_patterns.length; i++ )
-		{
-			var pattern = filtersPresets.include_patterns[i];
-			filtersPresets.regex_cache.push( convert2RegExp( pattern ) );
-		}
-	}
-}
-
 function reload()
 {
 	setTimeout( function() 
@@ -276,9 +264,10 @@ function isIncludedNew(element,index,array)
 		return true;
 
 	// preset includes
-	for( var i = 0; i < filtersPresets.regex_cache.length; i++ )
+	//for( var i = 0; i < filtersPresets.regex_cache.length; i++ )
+	for( var pattern in filtersPresets.regex_cache )
 	{
-		var regex = filtersPresets.regex_cache[i];
+		var regex = filtersPresets.regex_cache[pattern];
 		if( element.url.match( regex ) )
 		{
 			return true;
