@@ -140,5 +140,60 @@ ul {
 .stackoverflow { background-image: url('favicons/stackoverflow.ico'); background-repeat: no-repeat;padding-left:20px; }
 .knockoutjs { background-image: url('favicons/knockoutjs.png'); background-repeat: no-repeat; padding-left:20px;}
 .eclipse { background-image: url('favicons/eclipse.ico'); background-repeat: no-repeat; padding-left:20px; }
+
+.mozilla { background-image: url('favicons/mozilla.ico'); background-repeat: no-repeat;padding-left:20px; }
+.oreilly { background-image: url('favicons/oreilly.ico'); background-repeat: no-repeat;padding-left:20px; }
+.readthedocs { background-image: url('favicons/readthedocs.ico'); background-repeat: no-repeat;padding-left:20px; }
+.scala { background-image: url('favicons/scala.ico'); background-repeat: no-repeat;padding-left:20px; }
+.clojure { background-image: url('favicons/clojure.ico'); background-repeat: no-repeat;padding-left:20px; }
+.nodejs { background-image: url('favicons/nodejs.ico'); background-repeat: no-repeat;padding-left:20px; }
+.coffeescript { background-image: url('favicons/coffeescript.ico'); background-repeat: no-repeat;padding-left:20px; }
+
+.ruby { background-image: url('favicons/ruby.ico'); background-repeat: no-repeat;padding-left:20px; }
+.rubyonrails { background-image: url('favicons/rubyonrails.ico'); background-repeat: no-repeat;padding-left:20px; }
+.rubyinfo { background-image: url('favicons/rubyinfo.ico'); background-repeat: no-repeat;padding-left:20px; }
+
+.stripe { background-image: url('favicons/strip.ico'); background-repeat: no-repeat;padding-left:20px; }
+.nancy { background-image: url('favicons/nancy.ico'); background-repeat: no-repeat;padding-left:20px; }
+
+.compass { background-image: url('favicons/compass.png'); background-repeat: no-repeat;padding-left:20px; }
+.less { background-image: url('favicons/less.ico'); background-repeat: no-repeat;padding-left:20px; }
+
 .php { background-image: url('favicons/php.ico'); background-repeat: no-repeat;padding-left:20px; }
+.laravel { background-image: url('favicons/laravel.ico'); background-repeat: no-repeat;padding-left:20px; }
+
+.mysql { background-image: url('favicons/mysql.ico'); background-repeat: no-repeat;padding-left:20px; }
+.postgresql { background-image: url('favicons/postgresql.ico'); background-repeat: no-repeat;padding-left:20px; }
+
+.python { background-image: url('favicons/python.ico'); background-repeat: no-repeat;padding-left:20px; }
+.django { background-image: url('favicons/django.ico'); background-repeat: no-repeat;padding-left:20px; }
+.scipy{ background-image: url('favicons/scipy.ico'); background-repeat: no-repeat;padding-left:20px; }
+
+.R{ background-image: url('favicons/R.ico'); background-repeat: no-repeat;padding-left:20px; }
+.idl{ background-image: url('favicons/idl.ico'); background-repeat: no-repeat;padding-left:20px; }
+
+.boost{ background-image: url('favicons/boost.ico'); background-repeat: no-repeat;padding-left:20px; }
+.gnu { background-image: url('favicons/gnu.ico'); background-repeat: no-repeat;padding-left:20px; }
+
+.yui { background-image: url('favicons/yui.ico'); background-repeat: no-repeat;padding-left:20px; }
+.dtk { background-image: url('favicons/dtk.ico'); background-repeat: no-repeat;padding-left:20px; }
+.processingjs { background-image: url('favicons/processing.ico'); background-repeat: no-repeat;padding-left:20px; }
+.sencha { background-image: url('favicons/sencha.ico'); background-repeat: no-repeat;padding-left:20px; }
+.mootools { background-image: url('favicons/mootools.ico'); background-repeat: no-repeat;padding-left:20px; }
+.raphaeljs { background-image: url('favicons/raphaeljs.ico'); background-repeat: no-repeat;padding-left:20px; }
+.zepto { background-image: url('favicons/zepto.ico'); background-repeat: no-repeat;padding-left:20px; }
+.angularjs { background-image: url('favicons/angularjs.ico'); background-repeat: no-repeat;padding-left:20px; }
+.enyo { background-image: url('favicons/enyo.ico'); background-repeat: no-repeat;padding-left:20px; }
+.underscore { background-image: url('favicons/underscore.ico'); background-repeat: no-repeat;padding-left:20px; }
+.bonsai { background-image: url('favicons/bonsai.ico'); background-repeat: no-repeat;padding-left:20px; }
+.kineticjs { background-image: url('favicons/kineticjs.ico'); background-repeat: no-repeat;padding-left:20px; }
+.qx { background-image: url('favicons/qx.ico'); background-repeat: no-repeat;padding-left:20px; }
+.momentjs { background-image: url('favicons/momentjs.ico'); background-repeat: no-repeat;padding-left:20px; }
+.backbone { background-image: url('favicons/backbone.ico'); background-repeat: no-repeat;padding-left:20px; }
+
+
+.oracle { background-image: url('favicons/oracle.ico'); background-repeat: no-repeat;padding-left:20px; }
+.iOS { background-image: url('favicons/iOS.ico'); background-repeat: no-repeat;padding-left:20px; }
+.chrome { background-image: url('favicons/chrome.ico'); background-repeat: no-repeat;padding-left:20px; }
+
 
