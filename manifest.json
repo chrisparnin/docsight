@@ -5,7 +5,7 @@
   "description": "Visualize visits to various documentation resources.",
   "background": { "page": "background.html"},
   "browser_action": {
-    "default_icon": "icon.png"
+    "default_icon": "DocSight.png"
   },
   "options_page": "options.html",
   "sandbox": 
