@@ -25,11 +25,15 @@
 				</div>
 			</div>
 			<div class="control-group">
-				<label class="control-label" for="textarea">Custom Exclusion Filters</label>
+				<label class="control-label" for="textarea">Custom Filters</label>
 				<div class="controls">
 					<textarea id="filters" class="input-xlarge" id="textarea" rows="8"></textarea>
 				</div>
-				<p class="help-block">See filtering <a href="https://github.com/chrisparnin/docsight#readme" target="#">guide</a> for writing filters.</p>
+				<p class="help-block">
+					Example, to include github issues: <code>@include https://github.com/*/issues*</code> <br/>
+					Example to exclude Stack Overflow User Pages: <code>@exclude *://stackoverflow.com/users/*</code><br/>
+					See filtering <a href="https://github.com/chrisparnin/docsight#readme" target="#">section</a> for details.
+				</p>
 			</div>
 			<div class="form-actions">
 				<button id="submitBtn" type="submit" class="btn btn-primary">Save changes</button>

@@ -98,18 +98,3 @@ function saveOptions(options)
 		}
 	});
 }
-
-function getOptionsFoo()
-{
-	var options = {};
-	var select = document.getElementById("color");
-	for (var i = 0; i < select.children.length; i++) 
-	{
-		var child = select.children[i];
-		if (child.value == favorite) 
-		{
-			child.selected = "true";
-			break;
-		}
-	}
-}

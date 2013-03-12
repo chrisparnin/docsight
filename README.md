@@ -28,11 +28,20 @@ The default view shows the past 5 days.  Alternative date ranges include 1 month
 
 ## Filtering
 
-`docsight` uses a [whitelist](https://github.com/chrisparnin/docsight/blob/master/js/filterpresets.js) approach for filtering visits to developer sites.  Adding own custom filtering is in development.  To filter google searches, only searches within the past 30 seconds of a developer site are included.  Version 1.0.4 supports 63 apis/languages!
+`docsight` uses a [whitelist](https://github.com/chrisparnin/docsight/blob/master/js/filterpresets.js) approach for filtering visits to developer sites.  You can add your own custom filtering!  To filter google searches, only searches within the past 30 seconds of a developer site are included.  As of version 1.0.4, supports 63 apis/languages!
 
-Currently, `docsight` supports custom exclusion of urls/titles.  For example, to exclude visits to user pages on stackoverflow, you could write the following:
+There are two kinds of filter expressions supported 1) simple greasemonkey-like patterns with globs and 2) Javascript regex.
+Each pattern starts on a new line.
 
-    User .*? \- Stack Overflow
-    User .*? \- Meta Stack Overflow
+1. You can choose which sites to include or exclude with the following syntax.
 
-These are based on [javascript regex](https://developer.mozilla.org/en-US/docs/JavaScript/Guide/Regular_Expressions).  Seperate each filter by a newline.
+		@include https://github.com/*/issues* 
+		@exclude https://github.com/*/issues/new* 
+		@exclude *://stackoverflow.com/users*
+
+2. You can exclude sites based on its url or title content with a Javascript regex.  For example, to exclude visits to user pages on stackoverflow, you could write the following:
+
+      User .*? \- Stack Overflow
+      User .*? \- Meta Stack Overflow
+
+See the following for more detail about [javascript regex](https://developer.mozilla.org/en-US/docs/JavaScript/Guide/Regular_Expressions).

@@ -20,8 +20,12 @@ $(document).ready( function()
 			if( key == OptionsStorageKey )
 			{
 				// Notify that options have changed.
-				sendOptions();
-				setTimeout( reload, 3000 );
+				updateOptions( function(options) 
+				{
+					var appWindow = document.getElementById("app").contentWindow;
+					appWindow.postMessage({options: options}, "*");
+					setTimeout( reload, 3000 );
+				});
 			}
 		}
 	});
@@ -63,11 +67,23 @@ function handleMessage()
 	}
 }
 
+var userFilters = "";
+
+function updateOptions( callback ) 
+{
+	getOptionsExtern( function(options) 
+	{
+		userFilters = options.filters;
+		callback(options);
+	});
+}
+
 function sendOptions()
 {
 	var appWindow = document.getElementById("app").contentWindow;
 	getOptionsExtern( function(options) 
 	{
+		userFilters = options.filters;
 		appWindow.postMessage({options: options}, "*");
 	});
 }
@@ -272,6 +288,34 @@ function isIncludedNew(element,index,array)
 		{
 			return true;
 		}
+	}
+
+	// user includes
+	var filters = userFilters.split("\n");
+	for ( var i = 0; i < filters.length; i++ )
+	{
+		var filter = filters[i];
+		// trim spaces
+      filter = filter.replace(/^\s+|\s+$/g, '');
+
+      // guard against empty filter expressions.
+      if( filter == "" )
+			continue;
+
+      // startswith
+      if( filter.lastIndexOf("@include",0) === 0 )
+      {
+			var atoms = filter.split(/@include\s+/)
+         if( atoms.length == 2 )
+         {
+				var pattern = atoms[1];
+            var regex = convert2RegExp( pattern );
+            if( element.url.match( regex ) )
+            {
+					return true;
+            }
+         }
+      }
 	}
 	return false;
 }

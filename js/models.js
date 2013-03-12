@@ -18,17 +18,39 @@ var StoreModel = function()
 		for( var i = 0; i < filters.length; i++ )
 		{
 			var filter = filters[i];
+			// trim spaces
+			filter = filter.replace(/^\s+|\s+$/g, '');
+
 			// guard against empty filter expressions.
 			if( filter == "" )
 				continue;
-			var pattern = new RegExp( filter );
-			if( visit.title.search( pattern ) != -1)
+
+			// startswith
+			if( filter.lastIndexOf("@exclude",0) === 0 )
 			{
-				return true;
+				var atoms = filter.split(/@exclude\s+/)
+				if( atoms.length == 2 )
+				{
+					var pattern = atoms[1];
+					var regex = convert2RegExp( pattern );
+					if( visit.url.match( regex ) )
+					{
+						return true;
+					}
+				}
 			}
-			if( visit.url.search( pattern ) != -1)
+			// OLD STYLE: Javascript regex
+			else
 			{
-				return true;
+				var pattern = new RegExp( filter );
+				if( visit.title.search( pattern ) != -1)
+				{
+					return true;
+				}
+				if( visit.url.search( pattern ) != -1)
+				{
+					return true;
+				}
 			}
 		}
 		return false;
