@@ -37,7 +37,7 @@ $(document).ready( function()
 					filteredVisits.push( v );	
 				}
          }
-
+			storeModel.stores([]);
 			storeModel.appendVisits(filteredVisits);
 		}
 	}, false);
