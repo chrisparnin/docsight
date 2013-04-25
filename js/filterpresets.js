@@ -37,9 +37,9 @@ var filtersPresets =
 			{ ico: "", urls: [ "*://*/docs/javadocs/*"] },
 
 			// repository sites?
-			//"*://code.google.com/*",
-			//"://github.com/*",
-			//*://bl.ocks.org/*",
+			{ ico: "", urls: [ "*://code.google.com/*"] },
+			{ ico: "github", urls: [ "*://github.tld/*"] },
+			{ ico: "blocks", urls: [ "*://bl.ocks.org/*"] },
 		
 			// clojure
 			{ ico: "clojure", urls: [ "*://clojure.org/*", "*://clojure.github.com/clojure/*"] },

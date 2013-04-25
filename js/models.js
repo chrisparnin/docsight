@@ -98,7 +98,7 @@ function isGoogleSearch( url )
 {
    if( (url.indexOf("google") != -1  && url.indexOf("/search?") != -1) ||
        (url.indexOf("google") != -1 && url.indexOf("output=search") != -1 ) ||
-       (url.indexOf("google") != -1 && url.indexOf("&q=") != -1 )
+       (url.indexOf("google") != -1 && url.indexOf("&q=") != -1 ) 
      )
       return true;
    return false;
@@ -106,6 +106,11 @@ function isGoogleSearch( url )
 
 function getSiteKind(url)
 {
+	if( isGoogleSearch( url ) )
+	{
+		return "google";
+	}
+
 	for( var i = 0; i < filtersPresets.include_patterns.length; i++ )
    {
 		var site = filtersPresets.include_patterns[i];

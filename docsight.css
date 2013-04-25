@@ -131,6 +131,9 @@ ul {
 -webkit-padding-start: 20px;*/
 }
 
+.github { background-image: url('favicons/github.ico'); background-repeat: no-repeat; padding-left:20px;   } 
+.blocks { background-image: url('favicons/blocks.png'); background-repeat: no-repeat; padding-left:20px;   } 
+
 .google { background-image: url('favicons/google.ico'); background-repeat: no-repeat; padding-left:20px;   } 
 .play { background-image: url('favicons/playgoogle.ico'); background-repeat: no-repeat; padding-left:20px;} 
 .googlegroups { background-image: url('favicons/googlegroups.ico'); background-repeat: no-repeat; padding-left:20px;}
