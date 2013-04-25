@@ -37,7 +37,7 @@ var filtersPresets =
 			{ ico: "", urls: [ "*://*/docs/javadocs/*"] },
 
 			// repository sites?
-			{ ico: "", urls: [ "*://code.google.com/*"] },
+			{ ico: "google", urls: [ "*://code.google.com/*"] },
 			{ ico: "github", urls: [ "*://github.tld/*"] },
 			{ ico: "blocks", urls: [ "*://bl.ocks.org/*"] },
 		
