@@ -2,7 +2,7 @@ docsight
 ==============
 
 ## About
-Chrome extension for visualizing past visits to developer resources such as blog posts or Stack Overflow questions.
+[Chrome extension](https://chrome.google.com/webstore/detail/docsight/ceacnbgdhcnofnomlkmackaennjfmnpc?hl=en) for visualizing past visits to developer resources such as blog posts or Stack Overflow questions.
 
 This enables two things:
 
